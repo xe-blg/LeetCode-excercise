@@ -16,7 +16,7 @@
 
 public class erfenchazhao {
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solutionefcz solution = new Solutionefcz();
 
         // 有序数组（二分查找必须有序）
         int[] nums = {-1, 0, 3, 5, 9, 12};
@@ -40,7 +40,7 @@ public class erfenchazhao {
 }
 
 // 你原来的代码不动
-class Solution {
+class Solutionefcz {
     public int search(int[] nums, int target) {
         // 避免当 target 小于nums[0] nums[nums.length - 1]时多次循环运算
         if (target < nums[0] || target > nums[nums.length - 1]) {

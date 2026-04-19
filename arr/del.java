@@ -1,4 +1,4 @@
-class Solution {
+class Solutiondel {
     // 暴力法
     public int removeElement(int[] nums, int val) {
         int n = nums.length;
@@ -30,7 +30,7 @@ class Solution {
 // 这个必须是 public，因为你的文件名是 del.java
 public class del {
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solutiondel solution = new Solutiondel();
 
         // 测试用例 1
         int[] nums1 = {3, 2, 2, 3};
