@@ -42,5 +42,6 @@ public class kaifashang {
                 }
             }
         }
+        scanner.close();
      }
 }
