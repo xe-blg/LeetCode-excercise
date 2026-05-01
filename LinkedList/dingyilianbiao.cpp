@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 class MyLinkedList {
 public:
     struct LinkNode
@@ -13,20 +16,18 @@ public:
     MyLinkedList() {
         dummyHead = new LinkNode(0);
         size = 0;
-        
     }
     
     int get(int index) {
-        if(index>(size-1) || index<0)
+        if(index >= size || index < 0)
         {
             return -1;
         }
         LinkNode* cur = dummyHead->next;
         for(int i=0;i<index;i++)
         {
-            cur=cur->next;
+            cur = cur->next;
         }
-        
         return cur->val;
     }
     
@@ -38,11 +39,11 @@ public:
     }
     
     void addAtTail(int val) {
-        LinkNode*temp = new LinkNode(val);
+        LinkNode* temp = new LinkNode(val);
         LinkNode* cur = dummyHead;
         while(cur->next != nullptr)
         {
-            cur = cur ->next;
+            cur = cur->next;
         }
         cur->next = temp;
         size++;
@@ -51,23 +52,15 @@ public:
     void addAtIndex(int index, int val) {
         if(index > size) return;
         if(index < 0) index = 0;       
-        LinkNode*temp = new LinkNode(val);
-        LinkNode* cur = dummyHead->next;
-        if(index == 0)
+        LinkNode* temp = new LinkNode(val);
+        // 修正：cur 从 dummyHead 开始
+        LinkNode* cur = dummyHead;
+        for(int i=0;i<index;i++)
         {
-            temp->next = dummyHead->next;
-            dummyHead->next = temp;
+            cur = cur->next;
         }
-        else
-        {
-            for(int i=0;i<index-1;i++)
-            {
-                cur = cur->next;
-            }
-            temp->next = cur->next;
-            cur->next = temp;
-        }
-        
+        temp->next = cur->next;
+        cur->next = temp;
         size++;
     }
     
@@ -77,27 +70,40 @@ public:
         }
         LinkNode* cur = dummyHead;
         while(index--) {
-            cur = cur ->next;
+            cur = cur->next;
         }
         LinkNode* tmp = cur->next;
         cur->next = cur->next->next;
         delete tmp;
-        
-        tmp=nullptr;
+        tmp = nullptr;
         size--;
     }
 
-    private:
+    // 辅助函数：打印链表
+    void printList() {
+        LinkNode* cur = dummyHead->next;
+        while(cur) {
+            cout << cur->val << " -> ";
+            cur = cur->next;
+        }
+        cout << "null" << endl;
+    }
+
+private:
     int size;
     LinkNode* dummyHead;
 };
 
-/**
- * Your MyLinkedList object will be instantiated and called as such:
- * MyLinkedList* obj = new MyLinkedList();
- * int param_1 = obj->get(index);
- * obj->addAtHead(val);
- * obj->addAtTail(val);
- * obj->addAtIndex(index,val);
- * obj->deleteAtIndex(index);
- */
+// 测试用例
+int main() {
+    MyLinkedList* obj = new MyLinkedList();
+    obj->addAtHead(1);
+    obj->addAtTail(3);
+    obj->addAtIndex(1, 2);  // 链表变为 1->2->3
+    cout << "get(1): " << obj->get(1) << endl; // 输出 2
+    obj->deleteAtIndex(1);  // 链表变为 1->3
+    cout << "get(1): " << obj->get(1) << endl; // 输出 3
+    obj->printList();
+    delete obj;
+    return 0;
+}

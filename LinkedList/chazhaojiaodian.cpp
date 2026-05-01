@@ -1,31 +1,50 @@
+#include <iostream>
+using namespace std;
+
+// ¶¨ÒåÁ´±í½Úµã
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode* curA = headA;
         ListNode* curB = headB;
         int lenA = 0, lenB = 0;
-        while (curA != NULL) { // æ±‚é“¾è¡¨Açš„é•¿åº¦
+
+        // ÇóÁ´±íAµÄ³¤¶È
+        while (curA != NULL) {
             lenA++;
             curA = curA->next;
         }
-        while (curB != NULL) { // æ±‚é“¾è¡¨Bçš„é•¿åº¦
+
+        // ÇóÁ´±íBµÄ³¤¶È
+        while (curB != NULL) {
             lenB++;
             curB = curB->next;
         }
+
+        // ÖØÖÃÖ¸Õëµ½Í·²¿
         curA = headA;
         curB = headB;
-        // è®©curAä¸ºæœ€é•¿é“¾è¡¨çš„å¤´ï¼ŒlenAä¸ºå…¶é•¿åº¦
+
+        // ÈÃcurAÖ¸Ïò¸ü³¤µÄÁ´±í£¬lenA´æÆä³¤¶È
         if (lenB > lenA) {
-            swap (lenA, lenB);
-            swap (curA, curB);
+            swap(lenA, lenB);
+            swap(curA, curB);
         }
-        // æ±‚é•¿åº¦å·®
+
+        // ¼ÆËã³¤¶È²î
         int gap = lenA - lenB;
-        // è®©curAå’ŒcurBåœ¨åŒä¸€èµ·ç‚¹ä¸Šï¼ˆæœ«å°¾ä½ç½®å¯¹é½ï¼‰
+        // ³¤Á´±íÏÈ×ßgap²½£¬¶ÔÆëÄ©Î²
         while (gap--) {
             curA = curA->next;
         }
-        // éå†curA å’Œ curBï¼Œé‡åˆ°ç›¸åŒåˆ™ç›´æ¥è¿”å›
+
+        // Í¬Ê±±éÀúÁ½¸öÁ´±í£¬ÕÒ½»µã
         while (curA != NULL) {
             if (curA == curB) {
                 return curA;
@@ -33,6 +52,36 @@ public:
             curA = curA->next;
             curB = curB->next;
         }
+
         return NULL;
     }
 };
+
+// Ö÷º¯Êı
+int main() {
+    // ´´½¨²âÊÔÓÃÀı
+    ListNode* common = new ListNode(8);
+    common->next = new ListNode(4);
+    common->next->next = new ListNode(5);
+
+    ListNode* headA = new ListNode(4);
+    headA->next = new ListNode(1);
+    headA->next->next = common;
+
+    ListNode* headB = new ListNode(5);
+    headB->next = new ListNode(6);
+    headB->next->next = new ListNode(1);
+    headB->next->next->next = common;
+
+    Solution sol;
+    ListNode* res = sol.getIntersectionNode(headA, headB);
+    
+    // ÕâÀïÖĞÎÄÏÖÔÚÓÀ¾ÃÕı³££¡
+    if (res) {
+        cout << "Ïà½»½ÚµãµÄÖµÎª£º" << res->val << endl;
+    } else {
+        cout << "Á½¸öÁ´±í²»Ïà½»" << endl;
+    }
+
+    return 0;
+}

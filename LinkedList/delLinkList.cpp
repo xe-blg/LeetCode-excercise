@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-// ListNode å®šä¹‰
+// ListNode ¶¨Òå
 struct ListNode {
     int val;
     ListNode *next;
@@ -11,7 +11,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-// è¾…åŠ©å‡½æ•°ï¼šåˆ›å»ºé“¾è¡¨
+// ¸¨Öúº¯Êı£º´´½¨Á´±í
 ListNode* createList(vector<int> vals) {
     ListNode* dummy = new ListNode(0);
     ListNode* cur = dummy;
@@ -22,7 +22,7 @@ ListNode* createList(vector<int> vals) {
     return dummy->next;
 }
 
-// è¾…åŠ©å‡½æ•°ï¼šæ‰“å°é“¾è¡¨
+// ¸¨Öúº¯Êı£º´òÓ¡Á´±í
 void printList(ListNode* head) {
     while (head) {
         cout << head->val << " -> ";
@@ -31,7 +31,7 @@ void printList(ListNode* head) {
     cout << "null" << endl;
 }
 
-// è¾…åŠ©å‡½æ•°ï¼šåˆ é™¤é“¾è¡¨ï¼ˆé‡Šæ”¾å†…å­˜ï¼‰
+// ¸¨Öúº¯Êı£ºÉ¾³ıÁ´±í£¨ÊÍ·ÅÄÚ´æ£©
 void deleteList(ListNode* head) {
     while (head) {
         ListNode* tmp = head;
@@ -40,7 +40,7 @@ void deleteList(ListNode* head) {
     }
 }
 
-// è¿™é‡Œæ”¾å…¥ä½ çš„ä¸‰ä¸ª Solution ç±»ï¼ˆä»»é€‰ä¸€ä¸ªï¼‰
+// ÕâÀï·ÅÈëÄãµÄÈı¸ö Solution Àà£¨ÈÎÑ¡Ò»¸ö£©
 class Solution1 {
 public:
     ListNode* removeElements(ListNode* head, int val) {
@@ -65,8 +65,8 @@ public:
 class Solution2 {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        ListNode* dummyHead = new ListNode(0); // è®¾ç½®ä¸€ä¸ªè™šæ‹Ÿå¤´ç»“ç‚¹
-        dummyHead->next = head; // å°†è™šæ‹Ÿå¤´ç»“ç‚¹æŒ‡å‘headï¼Œè¿™æ ·æ–¹ä¾¿åé¢åšåˆ é™¤æ“ä½œ
+        ListNode* dummyHead = new ListNode(0); // ÉèÖÃÒ»¸öĞéÄâÍ·½áµã
+        dummyHead->next = head; // ½«ĞéÄâÍ·½áµãÖ¸Ïòhead£¬ÕâÑù·½±ãºóÃæ×öÉ¾³ı²Ù×÷
         ListNode* cur = dummyHead;
         while (cur->next != NULL) {
             if(cur->next->val == val) {
@@ -83,16 +83,16 @@ public:
     }
 };
 
-//é€’å½’
+//µİ¹é
 class Solution3 {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        // åŸºç¡€æƒ…å†µï¼šç©ºé“¾è¡¨
+        // »ù´¡Çé¿ö£º¿ÕÁ´±í
         if (head == nullptr) {
             return nullptr;
         }
 
-        // é€’å½’å¤„ç†
+        // µİ¹é´¦Àí
         if (head->val == val) {
             ListNode* newHead = removeElements(head->next, val);
             delete head;
@@ -105,18 +105,18 @@ public:
 };
 
 
-// æµ‹è¯•
+// ²âÊÔ
 int main() {
     Solution1 solution;
     
-    // æµ‹è¯•ç”¨ä¾‹1
+    // ²âÊÔÓÃÀı1
     vector<int> vals = {1,2,6,3,4,5,6};
     ListNode* head = createList(vals);
-    cout << "åŸé“¾è¡¨: ";
+    cout << "Ô­Á´±í: ";
     printList(head);
     
     head = solution.removeElements(head, 6);
-    cout << "åˆ é™¤6å: ";
+    cout << "É¾³ı6ºó: ";
     printList(head);
     
     deleteList(head);

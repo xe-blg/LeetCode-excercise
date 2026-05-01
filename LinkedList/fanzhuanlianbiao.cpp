@@ -28,7 +28,7 @@ public:
     }
 };
 
-// 工具函数：打印链表
+// 工具函数：打印链�?
 void printList(ListNode* head) {
     ListNode* cur = head;
     while (cur != nullptr) {
@@ -38,7 +38,7 @@ void printList(ListNode* head) {
     cout << endl;
 }
 
-// 测试主函数
+// 测试主函�?
 int main() {
     // 1. 创建链表 1 -> 2 -> 3 -> 4 -> 5
     ListNode* head = new ListNode(1);
@@ -47,13 +47,13 @@ int main() {
     head->next->next->next = new ListNode(4);
     head->next->next->next->next = new ListNode(5);
 
-    cout << "原链表：";
+    cout << "�������";
     printList(head);
 
     Solution sol;
     ListNode* newHead = sol.reverseList(head);
 
-    cout << "反转后：";
+    cout << "�������";
     printList(newHead);
 
     return 0;
